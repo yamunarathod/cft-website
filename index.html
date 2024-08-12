@@ -3089,12 +3089,11 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/webflow-script.js" type="text/javascript"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
-    <!-- Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore.js"></script>
-  
-    <!-- Your custom script -->
-    <script>
+    <script type="module">
+      // Import the Firebase SDK and required modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    
       // Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyD3aQlqYwsWonGc7u4CgcWLa_xdazkiBuo",
@@ -3105,21 +3104,22 @@
         appId: "1:521098972086:web:bcb7a18aa232ba2cc00f17",
         measurementId: "G-DNYZ60S7NJ",
       };
-  
+    
       // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
-
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+    
+      // Add event listener for form submission
       document
         .getElementById("wf-form-Newsletter")
         .addEventListener("submit", async function (event) {
           event.preventDefault();
           const email = document.getElementById("newsletter-email").value;
-
+    
           try {
-            await db.collection("newsletterSignups").add({
+            await addDoc(collection(db, "newsletterSignups"), {
               email: email,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              timestamp: serverTimestamp(),
             });
             alert("Thank you for signing up!");
           } catch (error) {
@@ -3128,5 +3128,6 @@
           }
         });
     </script>
+    
   </body>
 </html>
