@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = 3000;
 
 const corsOptions = {
-  origin: 'https://cft-website-git-main-yamunarathods-projects.vercel.app/', // Replace with your allowed origin
+  origin: '*', // Replace with your allowed origin
   credentials: true // Allow credentials to be sent
 };
 
