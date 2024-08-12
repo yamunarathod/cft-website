@@ -1,0 +1,9 @@
+[
+    {
+      "origin": ["https://cft-website-git-main-yamunarathods-projects.vercel.app/"],
+      "method": ["GET", "POST", "PUT"],
+      "maxAgeSeconds": 3600,
+      "responseHeader": ["Content-Type", "Authorization"]
+    }
+  ]
+  
