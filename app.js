@@ -4,8 +4,12 @@ const path = require("path");
 const cors = require('cors');
 const port = 3000;
 
-app.use(cors());  // Corrected this line
+const corsOptions = {
+  origin: 'https://cft-website-git-main-yamunarathods-projects.vercel.app/', // Replace with your allowed origin
+  credentials: true // Allow credentials to be sent
+};
 
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route for the home page
