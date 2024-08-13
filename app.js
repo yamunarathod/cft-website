@@ -5,8 +5,8 @@ const cors = require('cors');
 const port = 3000;
 
 const corsOptions = {
-  origin: '*', // Replace with your allowed origin
-  credentials: true // Allow credentials to be sent
+  origin: '*', 
+  credentials: true 
 };
 
 app.use(cors(corsOptions));
