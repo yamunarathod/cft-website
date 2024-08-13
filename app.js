@@ -5,32 +5,34 @@ const cors = require('cors');
 const port = 3000;
 
 const corsOptions = {
-  origin: '*', 
-  credentials: true 
+  origin: '*',
+  credentials: true
 };
 
 app.use(cors(corsOptions));
+
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // Set the directory for EJS files
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define a route for the home page
+// Define routes and render EJS templates
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.render("index"); // render index.ejs
 });
 
-
 app.get("/contact-us", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "contact-us.html"));
-  });
+  res.render("contact-us"); // render contact-us.ejs
+});
 
-  app.get("/about", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "about.html"));
-  });
+app.get("/about", (req, res) => {
+  res.render("about"); // render about.ejs
+});
 
-  
-  app.get("/showcase-new", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "showcase-new.html"));
-  });
-  
+app.get("/showcase-new", (req, res) => {
+  res.render("showcase-new"); // render showcase-new.ejs
+});
 
 // Start the server
 app.listen(port, () => {
